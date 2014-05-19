@@ -1,0 +1,38 @@
+{
+  "name": "prelude",
+  "version": "0.0.0",
+  "description": "A foundation for functional programming in JavaScript",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --compilers 'coffee:coffee-script/register' --reporter spec",
+    "dev": "mocha --compilers 'coffee:coffee-script/register' --reporter spec --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jasonkuhrt/prelude"
+  },
+  "keywords": [
+    "functional",
+    "lib",
+    "library",
+    "foundation",
+    "haskell",
+    "util",
+    "utility"
+  ],
+  "author": "Jason Kuhrt <jasonkuhrt@me.com> (http://jasonkuhrt.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasonkuhrt/prelude/issues"
+  },
+  "homepage": "https://github.com/jasonkuhrt/prelude",
+  "dependencies": {
+    "purry": "0.0.1"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.7.1"
+  }
+}
