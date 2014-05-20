@@ -11,6 +11,7 @@ for (var k in ops) exports[k] = ops[k];
 
 exports.map = purry(map);
 exports.filter = purry(filter);
+exports.isPlainObject = is_plain_object;
 
 
 

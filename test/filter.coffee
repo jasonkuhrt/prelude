@@ -1,5 +1,4 @@
-a = require('assert')
-filter = require('../').filter
+filter = prelude.filter
 
 is_odd = (a)-> a % 2 isnt 0
 
@@ -11,20 +10,20 @@ describe 'filter', ->
   hash = { a:1, b:2, c:3 }
 
   it 'is curried', ->
-    a typeof fodd is 'function'
+    (typeof fodd).should.eql 'function'
 
   # over arrays
 
   it 'applies function over each array item', ->
-    a.deepEqual fodd(arr), [1, 3]
+    fodd(arr).should.eql [1, 3]
 
   it 'does not mutate array', ->
-    a.notStrictEqual fodd(arr), arr
+    fodd(arr).should.not.eql arr
 
   # over hashes
 
   it 'applies function over each plain object item value', ->
-    a.deepEqual fodd(hash), {a: 1, c:3}
+    fodd(hash).should.eql {a: 1, c:3}
 
   it 'does not mutate plain object', ->
-    a.notStrictEqual fodd(hash), hash
+    fodd(hash).should.not.eql hash

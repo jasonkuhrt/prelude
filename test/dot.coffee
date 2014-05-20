@@ -1,7 +1,4 @@
-a = require('assert')
-dot = require('../').dot
-
-eq = a.equal
+dot = prelude.dot
 
 o =
   a: 'a'
@@ -15,28 +12,28 @@ o =
 describe 'dot', ->
 
   it 'returns last found value if path lookup partially succeeds and then fails', ->
-    eq dot('c.c3', o), o.c
+    dot('c.c3', o).should.eql o.c
 
   it 'returns null if given object isn\'t actually an object', ->
-    eq dot('foobar', 5), null
+    (dot('foobar', 5) is null).should.eql true
 
   it 'returns null if path lookup totally fails', ->
-    eq dot('d', o), o
+    dot('d', o).should.eql o
 
   it 'path as String', ->
-    eq dot('b', o), 'b'
+    dot('b', o).should.eql 'b'
 
   it 'path as String with keys separated by dots', ->
-    eq dot('c.c2', o), 'c2'
+    dot('c.c2', o).should.eql 'c2'
 
   it 'path as [String]', ->
-    eq dot(['c', 'c2'], o), 'c2'
+    dot(['c', 'c2'], o).should.eql 'c2'
 
   it 'path as empty string', ->
-    eq dot('', o), o
+    dot('', o).should.eql o
 
   it 'path as empty array', ->
-    eq dot([], o), o
+    dot([], o).should.eql o
 
   it 'is curried', ->
-    eq dot('a')(o), 'a'
+    dot('a')(o).should.eql 'a'

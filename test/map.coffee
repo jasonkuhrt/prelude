@@ -1,5 +1,5 @@
-a = require('assert')
-map = require('../').map
+console.log(window.prelude)
+map = prelude.map
 
 add1 = (a)-> a + 1
 
@@ -11,20 +11,20 @@ describe 'map', ->
   hash = { a:1, b:2, c:3 }
 
   it 'is curried', ->
-    a typeof map(add1) is 'function'
+    (typeof map(add1)).should.equal 'function'
 
   # over arrays
 
   it 'applies function over each array item', ->
-    a.deepEqual mad1(arr), [2,3,4]
+    mad1(arr).should.eql [2,3,4]
 
   it 'does not mutate array', ->
-    a.notStrictEqual mad1(arr), arr
+    mad1(arr).should.not.eql arr
 
   # over hashes
 
   it 'applies function over each plain object item value', ->
-    a.deepEqual mad1(hash), {a:2, b:3, c:4}
+    mad1(hash).should.eql {a:2, b:3, c:4}
 
   it 'does not mutate plain object', ->
-    a.notStrictEqual mad1(hash), hash
+    mad1(hash).should.not.eql hash

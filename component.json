@@ -1,0 +1,13 @@
+{
+  "name": "prelude",
+  "repository": "jasonkuhrt/prelude",
+  "version": "0.0.0",
+  "scripts": [
+    "index.js",
+    "lib/**/*.js"
+  ],
+  "main": "index.js",
+  "dependencies": {
+    "jasonkuhrt/purry": "*"
+  }
+}

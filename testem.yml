@@ -1,0 +1,15 @@
+framework: mocha
+serve_files:
+  - build/build.js
+  - test/util/*.js
+  - test/*.js
+src_files:
+  - test/**/*.js
+  - lib/**/*.js
+  - index.js
+before_tests: component build && coffee -c test
+on_exit: rm -rf ./build && rm test/*.js
+launch_in_ci:
+  - phantomjs
+launch_in_dev:
+  - phantomjs

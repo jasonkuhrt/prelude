@@ -1,5 +1,4 @@
-assert = require('assert')
-f = require('../lib/utils/is-plain-object')
+f = prelude.isPlainObject;
 
 
 
@@ -8,57 +7,56 @@ describe 'is_plain_object', ->
   describe 'returns true', ->
 
     it 'for null Object.create', ->
-      assert f(Object.create(null))
+      f(Object.create(null)).should.ok
 
     it 'for constructed Object', ->
-      assert f(new Object())
-      assert f(Object())
+      f(new Object()).should.ok
+      f(Object()).should.ok
 
       a = new Object()
       a.foo = 'bar'
-      assert f(a)
+      f(a).should.ok
 
     it 'for object literal', ->
-      assert f({a: 1})
+      f({a: 1}).should.ok
 
 
 
   describe 'returns false', ->
 
     it 'for primitives', ->
-      assert !f(null)
-      assert !f(true)
-      assert !f(undefined)
-      assert !f(1)
-      assert !f('')
-      assert !f('foo')
+      f(null).should.not.ok
+      f(true).should.not.ok
+      f(undefined).should.not.ok
+      f(1).should.not.ok
+      f('').should.not.ok
+      f('foo').should.not.ok
 
     it 'for objects with a non Object.prototype prototype', ->
-      assert !f(new Date())
-      assert !f(Buffer(1))
+      f(new Date()).should.not.ok
+      if (typeof Buffer isnt 'undefined') then f(Buffer(1)).should.not.ok
 
     it 'for object-literal Object.create', ->
-      assert !f(Object.create({}))
+      f(Object.create({})).should.not.ok
 
     it 'for function "arguments"', ->
-      assert !f(arguments)
+      f(arguments).should.not.ok
 
     it 'for regexp', ->
-      assert !f(/foo/)
-      assert !f(new RegExp('foo'))
+      f(/foo/).should.not.ok
+      f(new RegExp('foo')).should.not.ok
 
     it 'for functions', ->
-      assert !f(->)
-      assert !f(new Function())
+      f(->).should.not.ok
+      f(new Function()).should.not.ok
 
     it 'Custom constructed Objects', ->
       `function Foo(){ this.foo = 'bar'; return this; }`
-      assert !f(new Foo())
+      f(new Foo()).should.not.ok
 
     it 'Custom constructed Object that mess around with .valueOf', ->
       `function Foo(){ this.valueOf = ''; this.foo = 'bar'; return this; }`
-      assert !f(new Foo())
+      f(new Foo()).should.not.ok
 
       `function Foo2(){ this.valueOf = 'a'; this.foo = 'bar'; return this; }`
-      assert !f(new Foo2())
-
+      f(new Foo2()).should.not.ok
