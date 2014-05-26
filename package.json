@@ -7,8 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha --compilers 'coffee:coffee-script/register' --reporter spec --require test/util/should.js --require test/util/export.js",
-    "dev": "mocha --compilers 'coffee:coffee-script/register' --reporter spec  --require test/util/should.js --require test/util/export.js --watch"
+    "test": "testem ci",
+    "dev": "testem"
   },
   "repository": {
     "type": "git",
@@ -30,9 +30,12 @@
   },
   "homepage": "https://github.com/jasonkuhrt/prelude",
   "dependencies": {
-    "purry": "0.0.1"
+    "purry": "~0.0.3"
   },
   "devDependencies": {
-    "coffee-script": "^1.7.1"
+    "chai": "^1.9.1",
+    "coffee-script": "^1.7.1",
+    "component": "^1.0.0-rc5",
+    "mocha": "^1.19.0"
   }
 }

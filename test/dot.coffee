@@ -12,28 +12,28 @@ o =
 describe 'dot', ->
 
   it 'returns last found value if path lookup partially succeeds and then fails', ->
-    dot('c.c3', o).should.eql o.c
+    a.equal dot('c.c3', o), o.c
 
   it 'returns null if given object isn\'t actually an object', ->
-    (dot('foobar', 5) is null).should.eql true
+    a.equal dot('foobar', 5), null
 
   it 'returns null if path lookup totally fails', ->
-    dot('d', o).should.eql o
+    a.equal dot('d', o), o
 
   it 'path as String', ->
-    dot('b', o).should.eql 'b'
+    a.equal dot('b', o), 'b'
 
   it 'path as String with keys separated by dots', ->
-    dot('c.c2', o).should.eql 'c2'
+    a.equal dot('c.c2', o), 'c2'
 
   it 'path as [String]', ->
-    dot(['c', 'c2'], o).should.eql 'c2'
+    a.equal dot(['c', 'c2'], o), 'c2'
 
   it 'path as empty string', ->
-    dot('', o).should.eql o
+    a.equal dot('', o), o
 
   it 'path as empty array', ->
-    dot([], o).should.eql o
+    a.equal dot([], o), o
 
   it 'is curried', ->
-    dot('a')(o).should.eql 'a'
+    a.equal dot('a')(o), 'a'

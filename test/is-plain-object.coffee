@@ -7,56 +7,56 @@ describe 'is_plain_object', ->
   describe 'returns true', ->
 
     it 'for null Object.create', ->
-      f(Object.create(null)).should.ok
+      a f(Object.create(null))
 
     it 'for constructed Object', ->
-      f(new Object()).should.ok
-      f(Object()).should.ok
+      a f(new Object())
+      a f(Object())
 
-      a = new Object()
-      a.foo = 'bar'
-      f(a).should.ok
+      z = new Object()
+      z.foo = 'bar'
+      a f(z)
 
     it 'for object literal', ->
-      f({a: 1}).should.ok
+      a f({a: 1})
 
 
 
   describe 'returns false', ->
 
     it 'for primitives', ->
-      f(null).should.not.ok
-      f(true).should.not.ok
-      f(undefined).should.not.ok
-      f(1).should.not.ok
-      f('').should.not.ok
-      f('foo').should.not.ok
+      a.isFalse f(null)
+      a.isFalse f(true)
+      a.isFalse f(undefined)
+      a.isFalse f(1)
+      a.isFalse f('')
+      a.isFalse f('foo')
 
     it 'for objects with a non Object.prototype prototype', ->
-      f(new Date()).should.not.ok
-      if (typeof Buffer isnt 'undefined') then f(Buffer(1)).should.not.ok
+      a.isFalse f(new Date())
+      if (typeof Buffer isnt 'undefined') then a.isFalse f(Buffer(1))
 
     it 'for object-literal Object.create', ->
-      f(Object.create({})).should.not.ok
+      a.isFalse f(Object.create({}))
 
     it 'for function "arguments"', ->
-      f(arguments).should.not.ok
+      a.isFalse f(arguments)
 
     it 'for regexp', ->
-      f(/foo/).should.not.ok
-      f(new RegExp('foo')).should.not.ok
+      a.isFalse f(/foo/)
+      a.isFalse f(new RegExp('foo'))
 
     it 'for functions', ->
-      f(->).should.not.ok
-      f(new Function()).should.not.ok
+      a.isFalse f(->)
+      a.isFalse f(new Function())
 
     it 'Custom constructed Objects', ->
       `function Foo(){ this.foo = 'bar'; return this; }`
-      f(new Foo()).should.not.ok
+      a.isFalse f(new Foo())
 
     it 'Custom constructed Object that mess around with .valueOf', ->
       `function Foo(){ this.valueOf = ''; this.foo = 'bar'; return this; }`
-      f(new Foo()).should.not.ok
+      a.isFalse f(new Foo())
 
       `function Foo2(){ this.valueOf = 'a'; this.foo = 'bar'; return this; }`
-      f(new Foo2()).should.not.ok
+      a.isFalse f(new Foo2())
