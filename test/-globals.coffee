@@ -1,0 +1,6 @@
+{GLOBE, isClient} = require('plat')
+
+
+
+GLOBE.a = require('chai').assert;
+GLOBE.prelude = if isClient then require('prelude') else require('../lib')

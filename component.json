@@ -3,14 +3,15 @@
   "repository": "jasonkuhrt/prelude",
   "version": "0.0.0",
   "scripts": [
-    "index.js",
+    "lib/index.js",
     "lib/**/*.js"
   ],
-  "main": "index.js",
+  "main": "lib/index.js",
   "dependencies": {
-    "jasonkuhrt/purry": "*"
+    "jasonkuhrt/purry": "0.1.0"
   },
   "development": {
-    "chaijs/chai": "^1.9.1"
+    "chaijs/chai": "^1.9.1",
+    "jasonkuhrt/plat": "~0.1.0"
   }
 }

@@ -1,7 +1,6 @@
 framework: mocha
 serve_files:
   - build/build.js
-  - test/utils/*.js
   - test/*.js
 src_files:
   - test/**/*.coffee
@@ -10,7 +9,7 @@ src_files:
 before_tests: node_modules/.bin/component build --dev && node_modules/.bin/coffee -c test
 launchers:
   node:
-    command: node_modules/.bin/mocha --reporter tap --require 'test/utils/globals'
+    command: node_modules/.bin/mocha --reporter tap
     protocol: tap
 on_exit: rm -rf ./build && rm test/*.js
 launch_in_ci:
