@@ -11,29 +11,52 @@ o =
 
 describe 'dot', ->
 
-  it 'returns last found value if path lookup partially succeeds and then fails', ->
-    a.equal dot('c.c3', o), o.c
+  it 'returns null event if initial part of path lookup worked', ->
+    eq dot('c.c3', o), null
 
   it 'returns null if given object isn\'t actually an object', ->
-    a.equal dot('foobar', 5), null
+    eq dot('foobar', 5), null
 
   it 'returns null if path lookup totally fails', ->
-    a.equal dot('d', o), o
+    eq dot('d', o), null
+
+  it 'returns undefined if a real key has that value', ->
+    eq dot('a', { a: undefined }), undefined
+    eq dot('a', { a: undefined }), undefined
+    eq dot('a.b', { a: { b: undefined } }), undefined
+    # Whereas not this:
+    eq dot('a', {}), null
 
   it 'path as String', ->
-    a.equal dot('b', o), 'b'
+    eq dot('b', o), 'b'
 
   it 'path as String with keys separated by dots', ->
-    a.equal dot('c.c2', o), 'c2'
+    eq dot('c.c2', o), 'c2'
 
   it 'path as [String]', ->
-    a.equal dot(['c', 'c2'], o), 'c2'
+    eq dot(['c', 'c2'], o), 'c2'
 
   it 'path as empty string', ->
-    a.equal dot('', o), o
+    eq dot('', o), o
 
   it 'path as empty array', ->
-    a.equal dot([], o), o
+    eq dot([], o), o
+
+  it 'works with functions', ->
+    f = ->
+    f.a = 1
+    eq dot('a', f), 1
+
+  it 'works with non-traditional objects', ->
+    eq dot('toString', 1), (1).toString
+    eq dot('toString', 'a'), 'a'.toString
+    re = /foo/
+    eq dot('exec', re), re.exec
+
+  it 'returns null where manual dot access would return undefined', ->
+    re = /foo/
+    eq dot('match', re), null
+    eq re.match, undefined
 
   it 'is curried', ->
-    a.equal dot('a')(o), 'a'
+    eq dot('a')(o), 'a'
