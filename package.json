@@ -38,6 +38,7 @@
     "coffee-script": "^1.7.1",
     "component": "^1.0.0-rc5",
     "mocha": "^1.19.0",
-    "plat": "^0.1.0"
+    "plat": "^0.1.0",
+    "testem": "^0.6.16"
   }
 }
