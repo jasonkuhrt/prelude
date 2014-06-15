@@ -5,25 +5,26 @@ add1 = (a)-> a + 1
 
 
 describe 'map', ->
-  mad1 = map(add1)
+
+  madd1 = map(add1)
   arr = [1, 2, 3]
   hash = { a:1, b:2, c:3 }
 
   it 'is curried', ->
     a.typeOf map(add1), 'function'
 
-  # over arrays
+  describe 'over arrays', ->
 
-  it 'applies function over each array item', ->
-    a.deepEqual mad1(arr), [2,3,4]
+    it 'applies function over each value', ->
+      a.deepEqual madd1(arr), [2,3,4]
 
-  it 'does not mutate array', ->
-    a.notDeepEqual mad1(arr), arr
+    it 'does not mutate', ->
+      a.notDeepEqual madd1(arr), arr
 
-  # over hashes
+  describe 'over plain objects', ->
 
-  it 'applies function over each plain object item value', ->
-    a.deepEqual mad1(hash), {a:2, b:3, c:4}
+    it 'applies function over each value', ->
+      a.deepEqual madd1(hash), {a:2, b:3, c:4}
 
-  it 'does not mutate plain object', ->
-    a.notDeepEqual mad1(hash), hash
+    it 'does not mutate', ->
+      a.notDeepEqual madd1(hash), hash
