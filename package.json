@@ -7,8 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "testem ci",
-    "dev": "mocha --compilers 'coffee:coffee-script/register' --reporter spec --watch",
+    "test-all": "testem ci",
+    "test": "mocha --compilers 'coffee:coffee-script/register'",
+    "dev": "mocha --compilers 'coffee:coffee-script/register' --watch",
     "devall": "testem"
   },
   "repository": {
@@ -31,13 +32,14 @@
   },
   "homepage": "https://github.com/jasonkuhrt/prelude",
   "dependencies": {
+    "immutable": "^3.2.1",
     "purry": "~0.1.0"
   },
   "devDependencies": {
     "chai": "^1.9.1",
     "coffee-script": "^1.7.1",
     "component": "^1.0.0-rc5",
-    "mocha": "^1.19.0",
+    "mocha": "^2.0.1",
     "plat": "^0.1.0",
     "testem": "^0.6.16"
   }

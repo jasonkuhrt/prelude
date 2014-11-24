@@ -1,4 +1,4 @@
-f = prelude.isPlainObject;
+f = Prelude.isPlainObject
 
 
 
@@ -18,7 +18,7 @@ describe 'is_plain_object', ->
       a f(z)
 
     it 'for object literal', ->
-      a f({a: 1})
+      a f(a: 1)
 
 
 

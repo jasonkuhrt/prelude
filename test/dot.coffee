@@ -1,4 +1,4 @@
-dot = prelude.dot
+dot = Prelude.dot
 
 o =
   a: 'a'
@@ -11,24 +11,25 @@ o =
 
 describe 'dot', ->
 
-  it 'returns null event if initial part of path lookup worked', ->
-    eq dot('c.c3', o), null
+  it 'returns undefined even if initial part of path lookup worked', ->
+    eq dot('c.c3', o), undefined
 
   it 'returns null if given object isn\'t actually an object', ->
     eq dot('foobar', 5), null
 
-  it 'returns null if path lookup totally fails', ->
-    eq dot('d', o), null
+  it 'returns undefined if path lookup totally fails', ->
+    eq dot('d', o), undefined
 
   it 'returns undefined if a real key has that value', ->
     eq dot('a', { a: undefined }), undefined
     eq dot('a', { a: undefined }), undefined
     eq dot('a.b', { a: { b: undefined } }), undefined
-    # Whereas not this:
-    eq dot('a', {}), null
 
   it 'path as String', ->
     eq dot('b', o), 'b'
+
+  it 'o as null', ->
+    eq dot('b', null), undefined
 
   it 'path as String with keys separated by dots', ->
     eq dot('c.c2', o), 'c2'
